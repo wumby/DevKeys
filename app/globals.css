@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-ink text-white antialiased;
+  background-image:
+    radial-gradient(circle at top, rgba(0, 122, 204, 0.18), transparent 28%),
+    radial-gradient(circle at 85% 12%, rgba(55, 148, 255, 0.08), transparent 18%),
+    linear-gradient(180deg, #1e1e1e 0%, #181818 100%);
+}
+
+::selection {
+  background: rgba(0, 122, 204, 0.35);
+  color: white;
+}
+
+.app-shell::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 16% 18%, rgba(0, 122, 204, 0.12), transparent 18%),
+    radial-gradient(circle at 82% 0%, rgba(55, 148, 255, 0.08), transparent 20%);
+  z-index: -2;
+}
+
+.app-shell::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(circle at center, black 35%, transparent 80%);
+  z-index: -1;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #ffffff 0%, #9cdcfe 45%, #3794ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
