@@ -2,34 +2,46 @@ type SessionStatsProps = {
   current: number;
   total: number;
   correct: number;
-  streak: number;
+  time: string;
+  compact?: boolean;
 };
 
 const stats = [
   { key: "Question", accent: "text-[#9cdcfe]" },
   { key: "Correct", accent: "text-lime" },
-  { key: "Streak", accent: "text-ember" },
+  { key: "Time", accent: "text-ember" },
 ] as const;
 
 export function SessionStats({
   current,
   total,
   correct,
-  streak,
+  time,
+  compact = false,
 }: SessionStatsProps) {
-  const values = [`${current}/${total}`, `${correct}`, `${streak}`];
+  const values = [`${current}/${total}`, `${correct}`, time];
 
   return (
-    <div className="grid grid-cols-3 gap-3">
+    <div className="grid grid-cols-3 gap-2 md:gap-3">
       {stats.map((stat, index) => (
         <div
           key={stat.key}
-          className="rounded-2xl border border-line bg-panel/95 p-4"
+          className={`rounded-2xl border border-line bg-panel/95 ${
+            compact ? "p-3" : "p-4"
+          }`}
         >
-          <p className="text-xs uppercase tracking-[0.2em] text-muted">
+          <p
+            className={`uppercase tracking-[0.2em] text-muted ${
+              compact ? "text-[10px]" : "text-xs"
+            }`}
+          >
             {stat.key}
           </p>
-          <p className={`mt-2 text-2xl font-semibold ${stat.accent}`}>
+          <p
+            className={`mt-2 font-semibold ${stat.accent} ${
+              compact ? "text-xl md:text-2xl" : "text-2xl"
+            }`}
+          >
             {values[index]}
           </p>
         </div>
